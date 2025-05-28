@@ -1,8 +1,22 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-    name: keycloak-crd
-    namespace: keycloak
+   name: keycloak-crd
+   namespace: argocd
+
 spec:
-    sources:
-      repoURL:
+  project: default
+  source:
+    repoURL: https://github.com/CottonCandy01/keycloak.git
+    targetRevision: HEAD
+    path: crd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: keycloak
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

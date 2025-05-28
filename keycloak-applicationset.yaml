@@ -1,0 +1,34 @@
+kind:  ApplicationSet
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: keycloak
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/CottonCandy01/keycloak.git
+        revision: HEAD
+        directories:
+          - path: "*"
+  template:
+    metadata:
+      name: '{{.path}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: >
+          {{- if eq path "crd" -}} 0 {{- else -}} 1 {{- end }}
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/CottonCandy01/keycloak.git
+        targetRevision: HEAD
+        path: '{{.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

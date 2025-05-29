@@ -6,9 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/CottonCandy01/keycloak.git
+    repoURL: https://github.com/bitnami/charts.git
     targetRevision: HEAD
-    path: keycloak
+    path: bitnami/keycloak
+    helm:
+      values: | # change these values or make a values.yml file afterward
+        auth:
+          adminUser: admin
+          adminPassword: admin
+        proxy: edge
   destination:
     server: https://kubernetes.default.svc
     namespace: keycloak

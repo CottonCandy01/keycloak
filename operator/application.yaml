@@ -7,9 +7,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/CottonCandy01/keycloak.git
+    repoURL: https://github.com/kbumsik/keycloak-kubernetes.git
     targetRevision: HEAD
-    path: operator
+    path: charts/keycloak-operator
+    helm:
+      valueFiles:
+        - values.yaml
+
   destination:
     server: https://kubernetes.default.svc
     namespace: keycloak

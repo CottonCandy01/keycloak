@@ -1,0 +1,67 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: argocd
+spec:
+  host: argocd.apps.crc.testing
+  tls:
+    termination: reencrypt
+    # key: |-
+    #   -----BEGIN CERTIFICATE-----
+    #   [...]
+    #   -----END CERTIFICATE-----
+    # caCertificate: |- # openshift-service-ca 
+    #   -----BEGIN CERTIFICATE-----
+    #   MIIDUTCCAjmgAwIBAgIIJ3B1Gd9X1P4wDQYJKoZIhvcNAQELBQAwNjE0MDIGA1UE
+    #   Awwrb3BlbnNoaWZ0LXNlcnZpY2Utc2VydmluZy1zaWduZXJAMTc0MjEzNjk1MjAe
+    #   Fw0yNTAzMTYxNDU1NTJaFw0yNzA1MTUxNDU1NTNaMDYxNDAyBgNVBAMMK29wZW5z
+    #   aGlmdC1zZXJ2aWNlLXNlcnZpbmctc2lnbmVyQDE3NDIxMzY5NTIwggEiMA0GCSqG
+    #   SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDRBZw6tE5NRU8D/Y2SjayvPVfLL3Vhbsws
+    #   X3wQllhE4i+LIx5CCcSrh+uhj/ugjJxCaagGZuke/cWhxsjb4J2neCVPL0oongcy
+    #   K6CbqLHlokWAo/7EOEFcA3pPBg4ilkzBe7T6Aqv7c8hgm/+DPbULCnvvbYI1+9YW
+    #   3AKwb2c/BaRW6BmU4xhSvzakrywyeOVDsdjKuPLvxetB9Cq7hQWY7kJSZ0zbU+0H
+    #   UNh8s5GzzRF8ED0eBB25Yhwb8IPWLjA9InYbTV4bYAkC2z6TGDo+QPSsx99aWh2k
+    #   573ycz84MdubZprR8rshD1oyP4tn4qYbflASWFiZTUi1QeKgbndDAgMBAAGjYzBh
+    #   MA4GA1UdDwEB/wQEAwICpDAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBRNsoGA
+    #   030DfMXwKZxYOU4oI2axvDAfBgNVHSMEGDAWgBRNsoGA030DfMXwKZxYOU4oI2ax
+    #   vDANBgkqhkiG9w0BAQsFAAOCAQEAeXLUySlxxngcay0kLO7bqVETnrxNnrDAYd0e
+    #   Z85n+9QbfHbiD3GFdhMst9e5qQ1ECmCEavezNKw66mA9zstN/AJhGHw/uTs3XsYc
+    #   uHFmze3fr0cf0I/479kCaJE4HGyt3wwSOpmgAhwhsdIkmIEzaxRDYLhOLVHBR7YE
+    #   /XTSM3zVIc+qwkIx9MzXzL563W3AXROfuYvaiJeA2IE+t0UsPJ/t28L4BDAIMoZ/
+    #   XY//OtUH+N3d6ACbspRbTgWcOlJr5rKyiYXrA6eDAqc75DJkyTWB5KSclQH6BWV6
+    #   mplV7q8VGdqgq42h3eD2MvAoQt3sz79C4RbSwBwKmAMD1Dhnfw==
+    #   -----END CERTIFICATE-----
+
+    # certificate: |-
+    #   -----BEGIN CERTIFICATE-----
+    #   [...]
+    #   -----END CERTIFICATE-----
+    destinationCACertificate: |-
+      -----BEGIN CERTIFICATE-----
+      MIIDYjCCAkqgAwIBAgIQSqvfiNXtcnsJepAbPkGw4jANBgkqhkiG9w0BAQsFADAS
+      MRAwDgYDVQQKEwdBcmdvIENEMB4XDTI1MDUyMzEyMjMwN1oXDTI2MDUyMzEyMjMw
+      N1owEjEQMA4GA1UEChMHQXJnbyBDRDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+      AQoCggEBALkumqWUKLfJyh8NfW2dcD6bUK2XTKCgYjugJWQEp+ne+Vi3Tq7ywhNO
+      8oIe8FTX2waIgCY8psGWfyFmLsd7n2RjDsQ2MXbwOYwBKmMl9/OHafc7stOjpTkY
+      2GL8BUKtbfOGneLX6RICm6K2gVvmY9I2KmdnM64zfPukQTo5lbBJHkpREvyg2kZX
+      l0VJR/9xwLjGXTPeNwboAPEFAV6H4KEk6F8fh4mUih6hfY3tM4aqWEcKV2d5HNDj
+      aYkxdmxwENIZRvlbZGiq9cPNKA2Cj44WnYgD2kUbOEbOOzXuZXGdE8HvgtJlc8hH
+      u2uZ+PhBYk8GAegGCDcjnTxDvgiNAWECAwEAAaOBszCBsDAOBgNVHQ8BAf8EBAMC
+      BaAwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIwADB7BgNVHREEdDBy
+      gglsb2NhbGhvc3SCDWFyZ29jZC1zZXJ2ZXKCFGFyZ29jZC1zZXJ2ZXIuYXJnb2Nk
+      ghhhcmdvY2Qtc2VydmVyLmFyZ29jZC5zdmOCJmFyZ29jZC1zZXJ2ZXIuYXJnb2Nk
+      LnN2Yy5jbHVzdGVyLmxvY2FsMA0GCSqGSIb3DQEBCwUAA4IBAQBRlCTYM6PZ7Y30
+      6F2DFxOqnUa6Q8SDPI2FWodXfoahIw7Abf1xAKUwWKd9wxcxlDd2kYidXjfg05z6
+      hJGSRgQZjcICxShfr5oeZQd4CVB6fVG6TAKJtaVQs1sxrdzBOdm5Nhc4kElcGq/C
+      CxuTTwIDMb/8O8pmsC0VXq0HPX9+0p8cptz944BAI2vgZ2HW79VuT2y/4JMrMRcZ
+      YCJtwIGuVzfaghTO12OJ+1m9Aj9KA8FeOaBHksoKuVO8WKeKIHtGn/xVoXQ3Z29B
+      Ymlwytdt3WhH9WGLJPF98u15jGh8ky+r0wWY8BpkVkCYzhuWcnkfNWL9neKRRdS0
+      BWkE0RPk
+      -----END CERTIFICATE-----
+  to:
+    kind: Service
+    name: argocd-server
+  
+    
+    
+    

@@ -1,0 +1,8 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: argocd-redis
+  namespace: argocd
+data:
+  auth: bXlwd2QK
+type: Opaque

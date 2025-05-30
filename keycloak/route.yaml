@@ -9,4 +9,3 @@ spec:
   to:
     kind: Service
     name: keycloak
-    weight: 100

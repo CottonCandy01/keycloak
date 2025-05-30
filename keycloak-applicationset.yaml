@@ -6,26 +6,29 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/CottonCandy01/keycloak.git
-        revision: HEAD
-        directories:
-          - path: "*"
+#    - git:
+#        repoURL: https://github.com/CottonCandy01/keycloak.git
+#        revision: helm
+#        directories:
+#          - path: keycloak
+#          - path: operator
+    - list:
+        elements:
+          - name: keycloak
+            url: https://github.com/bitnami/charts.git
+            helm: true
   template:
     metadata:
-      name: '{{.path}}'
-      annotations:
-        argocd.argoproj.io/sync-wave: >
-          {{- if eq path "crd" -}} 0 {{- else -}} 1 {{- end }}
+      name: '{{.path.basename}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/CottonCandy01/keycloak.git
-        targetRevision: HEAD
-        path: '{{.path}}'
+        targetRevision: helm
+        path: '{{.path.basename}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: argocd
+        namespace: '{{.path.basename}}'
       syncPolicy:
         automated:
           prune: true

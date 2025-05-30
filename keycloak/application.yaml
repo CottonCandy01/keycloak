@@ -10,11 +10,10 @@ spec:
     targetRevision: HEAD
     path: bitnami/keycloak
     helm:
-      values: | # change these values or make a values.yml file afterward
-        auth:
-          adminUser: admin
-          adminPassword: admin
-        proxy: edge
+      values:  |
+        postgresql:
+          auth:
+            password: mysecurepassword
   destination:
     server: https://kubernetes.default.svc
     namespace: keycloak

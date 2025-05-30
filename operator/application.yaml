@@ -2,7 +2,7 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
    name: keycloak-operator
-   namespace: argocd
+   # namespace: argocd
 
 spec:
   project: default
@@ -16,7 +16,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: keycloak
+    # namespace: keycloak
   syncPolicy:
     automated:
       prune: true

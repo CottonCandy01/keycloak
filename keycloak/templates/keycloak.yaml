@@ -1,0 +1,27 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: {{ include "keycloak.fullname" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  instances: {{ .Values.instances }}
+  db:
+    vendor: {{ .Values.db.vendor }}
+    host: {{ .Values.db.host }}
+    usernameSecret:
+      name: {{ .Values.db.secret }}
+      key: username
+    passwordSecret:
+      name: {{ .Values.db.secret }}
+      key: password
+    database: {{ .Values.db.database }}
+  http:
+    httpEnabled: true
+    httpPort: {{ .Values.http.port }}
+  hostname:
+    # hostname: http://example-kc-keycloak-operator.apps-crc.testing/
+    strict: false
+  ingress:
+    enabled: false
+  proxy:
+    headers: xforwarded

@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ include "keycloak.fullname" . }}
+  annotations:
+    haproxy.router.openshift.io/set-forwarded-headers: replace
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: {{ include "keycloak.fullname" . }}
+  tls:
+    termination: "edge"

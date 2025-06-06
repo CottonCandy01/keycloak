@@ -1,0 +1,10 @@
+{{- $realms := .Files.Glob "realms/*.json" }}
+{{- range $path, $_ := $realms }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ (base $path) | trimSuffix ".json" | lower | replace "_" "-" }}
+data:
+  {{ base $path }}: |-
+{{ indent 4 ($realms.Get $path) }}
+{{- end }}
